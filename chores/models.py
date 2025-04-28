@@ -36,4 +36,9 @@ class ChoreGroup(models.Model):
     name = models.CharField(max_length=100)
     chores = models.ManyToManyField(Chore, blank=True)
 
+    def __str__(self):
+        return self.name
     
+    
+    
+
