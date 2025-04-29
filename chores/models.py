@@ -1,5 +1,5 @@
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
 class Household(models.Model):
     name = models.CharField(max_length=255)
@@ -8,11 +8,25 @@ class Household(models.Model):
 
     def __str__(self):
         return self.name
-
-
+    
 class User(AbstractUser):
     is_parent = models.BooleanField(default=False)
-    household = models.ForeignKey(Household, null=True, blank=True, on_delete=models.SET_NULL, related_name='members')
+    household = models.ForeignKey('Household', null=True, blank=True, on_delete=models.SET_NULL, related_name='members')
+
+    groups = models.ManyToManyField(
+        Group,
+        related_name='chores_user_set',
+        blank=True,
+        help_text='The groups this user belongs to.',
+        verbose_name='groups'
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name='chores_user_set_permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        verbose_name='user permissions'
+    )
 
     def __str__(self):
         return self.username
