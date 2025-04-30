@@ -1,40 +1,7 @@
-from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
-
-class Household(models.Model):
-    name = models.CharField(max_length=255)
-    invite_code = models.CharField(max_length=10, unique=True)
-    created_by = models.ForeignKey('User', on_delete=models.CASCADE, related_name='households_created')
-
-    def __str__(self):
-        return self.name
-    
-class User(AbstractUser):
-    is_parent = models.BooleanField(default=False)
-    household = models.ForeignKey('Household', null=True, blank=True, on_delete=models.SET_NULL, related_name='members')
-
-    groups = models.ManyToManyField(
-        Group,
-        related_name='chores_user_set',
-        blank=True,
-        help_text='The groups this user belongs to.',
-        verbose_name='groups'
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name='chores_user_set_permissions',
-        blank=True,
-        help_text='Specific permissions for this user.',
-        verbose_name='user permissions'
-    )
-
-    def __str__(self):
-        return self.username
-
 
 class ChoreGroup(models.Model):
     name = models.CharField(max_length=255)
-    household = models.ForeignKey(Household, on_delete=models.CASCADE, related_name='chore_groups')
 
     def __str__(self):
         return self.name
@@ -59,7 +26,6 @@ class Chore(models.Model):
 
 
 class RotationRule(models.Model):
-    household = models.OneToOneField(Household, on_delete=models.CASCADE, related_name='rotation_rule')
     rotation_period_weeks = models.PositiveIntegerField(default=1)
 
     def __str__(self):
@@ -67,12 +33,12 @@ class RotationRule(models.Model):
 
 
 class Assignment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assignments')
+    assignee_name = models.CharField(max_length=255, blank=True)
     chore = models.ForeignKey(Chore, on_delete=models.CASCADE, related_name='assignments')
     week_start_date = models.DateField()
 
     def __str__(self):
-        return f"{self.user.username} - {self.chore.name} - {self.week_start_date}"
+        return f"{self.assignee_name} - {self.chore.name} - {self.week_start_date}"
 
     
     
