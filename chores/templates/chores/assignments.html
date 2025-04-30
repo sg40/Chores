@@ -1,0 +1,16 @@
+<h1>Chore Assignments</h1>
+
+{% for person in people %}
+  <h2>{{ person.name }}</h2>
+  {% if person.chore_group %}
+    <h3>Chore Group: {{ person.chore_group.name }}</h3>
+    <ul>
+      {% for chore in person.chore_group.chores.all %}
+        <li>{{ chore.name }}{% if chore.description %} — {{ chore.description }}{% endif %}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No chore group assigned.</p>
+  {% endif %}
+{% endfor %}
+

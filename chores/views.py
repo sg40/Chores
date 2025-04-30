@@ -1,4 +1,6 @@
 from django.shortcuts import render
-# Create your views here.
-def chores(request):
-    return render(request, 'chores/chores.html')
+from .models import Person
+
+def chore_assignments_view(request):
+    people = Person.objects.select_related('chore_group').prefetch_related('chore_group__chores')
+    return render(request, "chores/assignments.html", {"people": people})
