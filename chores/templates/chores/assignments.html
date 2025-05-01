@@ -1,16 +1,42 @@
-<h1>Chore Assignments</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chore Assignments</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chores/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Chore Assignments</h1>
 
-{% for person in people %}
-  <h2>{{ person.name }}</h2>
-  {% if person.chore_group %}
-    <h3>Chore Group: {{ person.chore_group.name }}</h3>
-    <ul>
-      {% for chore in person.chore_group.chores.all %}
-        <li>{{ chore.name }}{% if chore.description %} — {{ chore.description }}{% endif %}</li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No chore group assigned.</p>
-  {% endif %}
-{% endfor %}
+        {% for person in people %}
+            <h2>{{ person.name }}</h2>
+            <ul>
+                {% for chore in person.chore_group.chores.all %}
+                    <li>
+                        <a href="{% url 'chore_detail' chore.pk %}">
+                            {{ chore.name }}
+                        </a><br>
+                        {% for day in chore.days.all %}
+                            <span class="tag">{{ day.name }}</span>
+                        {% endfor %}
+                        <form method="post" action="{% url 'chore_assignments' %}">
+                            {% csrf_token %}
+                            <label for="completed">
+                                <input type="checkbox" name="completed" {% if chore.completed %}checked{% endif %}>
+                                Completed
+                            </label>
+                            <button type="submit">Update</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+
+
 

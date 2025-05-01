@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* AliceBlue */
+    color: #333;
+    margin: 0;
+    padding: 2rem;
+}
+
+h1, h2, h3 {
+    color: #0a3d62;
+}
+
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+li:hover {
+    background-color: #e6f3ff;
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+
+strong {
+    color: #2c3e50;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #d0ebff;
+    color: #084c61;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.85rem;
+    border-radius: 12px;
+}
+
+form input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+form button {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #005fa3;
+}
+
+

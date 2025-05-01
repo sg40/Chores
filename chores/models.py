@@ -13,10 +13,10 @@ class ChoreGroup(models.Model):
         return self.name
 
 class Chore(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    chore_group = models.ForeignKey(ChoreGroup, on_delete=models.CASCADE, related_name='chores')
-    days = models.ManyToManyField(Days, related_name='chores')
+    days = models.ManyToManyField(Days)
+    completed = models.BooleanField(default=False)  # Track whether the chore is completed
 
     def __str__(self):
         return self.name

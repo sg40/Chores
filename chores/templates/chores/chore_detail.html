@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ chore.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chores/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ chore.name }}</h1>
+
+        <p><strong>Description:</strong><br> {{ chore.description }}</p>
+
+        <p><strong>Assigned Days:</strong><br>
+            {% for day in chore.days.all %}
+                <span class="tag">{{ day.name }}</span>
+            {% endfor %}
+        </p>
+        
+        <p><a href="{% url 'chore_assignments' %}">← Back to Chore Assignments</a></p>
+    </div>
+</body>
+</html>
