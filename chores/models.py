@@ -16,10 +16,8 @@ class Chore(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     days = models.ManyToManyField(Days)
-    completed = models.BooleanField(default=False)  # Track whether the chore is completed
-
-    def __str__(self):
-        return self.name
+    chore_group = models.ForeignKey(ChoreGroup, on_delete=models.CASCADE, related_name="chores")
+    completed = models.BooleanField(default=False)
 
 class Person(models.Model):
     name = models.CharField(max_length=255)

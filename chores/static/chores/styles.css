@@ -1,18 +1,27 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A more modern, clean font */
     background-color: #f0f8ff; /* AliceBlue */
     color: #333;
     margin: 0;
     padding: 2rem;
+    line-height: 1.6; /* Increased line height for better readability */
 }
 
 h1, h2, h3 {
     color: #0a3d62;
+    margin-bottom: 1rem;
+    font-weight: 600; /* Slightly bolder headings */
+    font-size: 2rem; /* Increase font size for headings */
+}
+
+h1 {
+    font-size: 2.5rem; /* Bigger main heading */
 }
 
 a {
     color: #0077cc;
     text-decoration: none;
+    font-weight: 500; /* Slightly bolder links for better visibility */
 }
 
 a:hover {
@@ -22,16 +31,18 @@ a:hover {
 ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 li {
     background-color: white;
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* Increased space between list items */
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: all 0.2s ease;
     cursor: pointer;
+    font-size: 1rem; /* Increased font size for better readability */
 }
 
 li:hover {
@@ -40,13 +51,13 @@ li:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-
 strong {
     color: #2c3e50;
+    font-weight: 600; /* Bolded for emphasis */
 }
 
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
 }
 
@@ -58,6 +69,7 @@ strong {
     margin: 2px;
     font-size: 0.85rem;
     border-radius: 12px;
+    font-weight: 500; /* Slightly bolder tags */
 }
 
 form input[type="checkbox"] {
@@ -69,14 +81,113 @@ form button {
     background-color: #0077cc;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 8px 16px; /* Slightly larger buttons for a cleaner look */
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 10px;
+    font-weight: 500; /* Make buttons bolder for prominence */
 }
 
 form button:hover {
     background-color: #005fa3;
+}
+
+.complete-btn {
+    background-color: #e0f0ff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-top: 10px;
+}
+
+.complete-btn:hover {
+    background-color: #b6dcff;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    position: relative;
+    height: 24px; /* Increased size for better clickability */
+    width: 24px;
+    cursor: pointer;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.custom-checkbox .checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f8ff;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    font-size: 16px; /* Increased font size for the checkmark */
+    color: lightgray;
+    font-weight: bold;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: #4db8ff;
+    border-color: #4db8ff;
+    color: white;
+}
+
+.custom-checkbox .checkmark::after {
+    content: '✓';
+    position: absolute;
+    color: lightgray;
+    font-size: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Solid blue check when checked */
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: #4db8ff;
+    border-color: #4db8ff;
+}
+
+.custom-checkbox input:checked ~ .checkmark::after {
+    color: white;
+}
+
+.chore-form {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between the checkbox and the submit button */
+    margin-top: 10px;
+}
+
+/* Optional, for better form field spacing */
+input[type="text"], input[type="checkbox"], button {
+    font-family: inherit; /* Ensures all form elements inherit font styling */
+    font-size: 1rem; /* Ensures form elements match text size */
+    line-height: 1.5; /* Improves spacing inside form elements */
+}
+
+h2 {
+    font-size: 1.75rem; /* Adjusted font size for clarity */
+    font-weight: 600; /* Slightly bolder for emphasis */
+    color: #0a3d62; /* Keep the color from before */
+    padding: 10px 15px; /* Add padding inside the border */
+    border-radius: 8px; /* Rounded corners for a smoother look */
+    margin-top: 20px; /* Space above the label */
+    margin-bottom: 15px; /* Space below the label */
+    background: linear-gradient(to right, #ffffff, #98d5fd); /* Light blue gradient */
+    text-align: center; /* Center align the name */
 }
 
 

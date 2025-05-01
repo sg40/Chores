@@ -13,25 +13,26 @@
         {% for person in people %}
             <h2>{{ person.name }}</h2>
             <ul>
-                {% for chore in person.chore_group.chores.all %}
-                    <li>
-                        <a href="{% url 'chore_detail' chore.pk %}">
-                            {{ chore.name }}
-                        </a><br>
-                        {% for day in chore.days.all %}
-                            <span class="tag">{{ day.name }}</span>
-                        {% endfor %}
-                        <form method="post" action="{% url 'chore_assignments' %}">
-                            {% csrf_token %}
-                            <label for="completed">
-                                <input type="checkbox" name="completed" {% if chore.completed %}checked{% endif %}>
-                                Completed
-                            </label>
-                            <button type="submit">Update</button>
-                        </form>
-                    </li>
-                {% endfor %}
-            </ul>
+              {% for chore in person.chore_group.chores.all %}
+                  <li>
+                      <a href="{% url 'chore_detail' chore.pk %}">
+                          {{ chore.name }}
+                      </a><br>
+                      {% for day in chore.days.all %}
+                          <span class="tag">{{ day.name }}</span>
+                      {% endfor %}
+                      <form method="post" action="{% url 'chore_assignments' %}" class="chore-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="chore_id" value="{{ chore.id }}">
+                        
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="completed" onchange="this.form.submit()" {% if chore.completed %}checked{% endif %}>
+                            <span class="checkmark"></span>
+                        </label>
+                    </form>                                   
+                  </li>
+              {% endfor %}
+          </ul>
         {% endfor %}
     </div>
 </body>
