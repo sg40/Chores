@@ -8,20 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Chore Assignments</h1>
-
+            <h1>Assignments</h1>
         {% for person in people %}
             <h2>{{ person.name }}</h2>
             <ul>
               {% for chore in person.chore_group.chores.all %}
-                  <li>
-                      <a href="{% url 'chore_detail' chore.pk %}">
-                          {{ chore.name }}
-                      </a><br>
-                      {% for day in chore.days.all %}
-                          <span class="tag">{{ day.name }}</span>
-                      {% endfor %}
-                      <form method="post" action="{% url 'chore_assignments' %}" class="chore-form">
+              <li onclick="window.location.href='{% url 'chore_detail' chore.pk %}'">
+                <div class="chore-content">
+                    {{ chore.name }}<br>
+                    {% for day in chore.days.all %}
+                        <span class="tag">{{ day.name }}</span>
+                    {% endfor %}
+                    <form method="post" action="{% url 'chore_assignments' %}" class="chore-form" onclick="event.stopPropagation();">
                         {% csrf_token %}
                         <input type="hidden" name="chore_id" value="{{ chore.id }}">
                         
@@ -29,8 +27,9 @@
                             <input type="checkbox" name="completed" onchange="this.form.submit()" {% if chore.completed %}checked{% endif %}>
                             <span class="checkmark"></span>
                         </label>
-                    </form>                                   
-                  </li>
+                    </form>
+                </div>
+            </li>            
               {% endfor %}
           </ul>
         {% endfor %}
