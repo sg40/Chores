@@ -1,42 +1,43 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Chore Assignments</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'chores/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-            <h1>Assignments</h1>
-        {% for person in people %}
-            <h2>{{ person.name }}</h2>
+{% extends 'chores/base.html' %}
+
+{% block title %}Assignments{% endblock %}
+
+{% block content %}
+    <h1>Assignments</h1>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% for person in people %}
+        <h2>{{ person.name }}</h2>
+        {% if person.chore_group %}
             <ul>
-              {% for chore in person.chore_group.chores.all %}
-              <li onclick="window.location.href='{% url 'chore_detail' chore.pk %}'">
-                <div class="chore-content">
-                    {{ chore.name }}<br>
-                    {% for day in chore.days.all %}
-                        <span class="tag">{{ day.name }}</span>
-                    {% endfor %}
-                    <form method="post" action="{% url 'chore_assignments' %}" class="chore-form" onclick="event.stopPropagation();">
-                        {% csrf_token %}
-                        <input type="hidden" name="chore_id" value="{{ chore.id }}">
-                        
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="completed" onchange="this.form.submit()" {% if chore.completed %}checked{% endif %}>
-                            <span class="checkmark"></span>
-                        </label>
-                    </form>
-                </div>
-            </li>            
-              {% endfor %}
-          </ul>
-        {% endfor %}
-    </div>
-</body>
-</html>
-
-
+                {% for chore in person.chore_group.chores.all %}
+                    <li onclick="window.location.href='{% url 'chore_detail' chore.pk %}'">
+                        <div class="chore-content">
+                            {{ chore.name }}<br>
+                            {% for day in chore.days.all %}
+                                <span class="tag">{{ day.name }}</span>
+                            {% endfor %}
+                            <form method="post" action="{% url 'chore_assignments' %}" class="chore-form" onclick="event.stopPropagation();">
+                                {% csrf_token %}
+                                <input type="hidden" name="chore_id" value="{{ chore.id }}">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="completed" onchange="this.form.submit()" {% if chore.completed %}checked aria-checked="true"{% else %}aria-checked="false"{% endif %} value="true">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No chore group assigned.</p>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
 
 

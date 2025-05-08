@@ -1,24 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{{ chore.name }}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'chores/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <h1>{{ chore.name }}</h1>
+{% extends 'chores/base.html' %}
 
-        <p><strong>Description:</strong><br> {{ chore.description }}</p>
+{% block title %}{{ chore.name }}{% endblock %}
 
-        <p><strong>Assigned Days:</strong><br>
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="chore-detail-box">
+        <h3>{{ chore.name }}</h3>
+        <div class="description-box">
+            <p><strong class="chore-detail-label">Description:</strong> {{ chore.description|default:"No description provided" }}</p>
+        </div>
+        <div class="tags">
             {% for day in chore.days.all %}
                 <span class="tag">{{ day.name }}</span>
+            {% empty %}
+                <span>No days assigned</span>
             {% endfor %}
-        </p>
-        
-        <p><a href="{% url 'chore_assignments' %}">← Back to Chore Assignments</a></p>
+        </div>
     </div>
-</body>
-</html>
+    <a href="{% url 'chore_assignments' %}" class="back-button">← Back to Assignments</a>
+{% endblock %}

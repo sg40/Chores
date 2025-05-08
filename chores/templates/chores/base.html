@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Chore App{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chores/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{% url 'chore_assignments' %}" class="nav-button">Assignments</a>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
