@@ -25,4 +25,3 @@ def chore_assignments_view(request):
 def chore_detail_view(request, pk):
     chore = get_object_or_404(Chore, pk=pk)
     return render(request, "chores/chore_detail.html", {"chore": chore})
-

@@ -5,3 +5,4 @@ urlpatterns = [
     path('', chore_assignments_view, name='chore_assignments'),
     path('chore/<int:pk>/', chore_detail_view, name='chore_detail'),
 ]
+
