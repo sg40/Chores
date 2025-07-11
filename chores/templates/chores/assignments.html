@@ -3,6 +3,7 @@
 {% block title %}Assignments{% endblock %}
 
 {% block content %}
+<div class="container">
     <h1>Assignments</h1>
     {% if messages %}
         <ul class="messages">
@@ -10,6 +11,14 @@
                 <li>{{ message }}</li>
             {% endfor %}
         </ul>
+    {% endif %}
+    {% load tz %}
+    {% if last_rotation_time %}
+        {% localtime on %}
+        <p class="rotation-message">Last rotated: {{ last_rotation_time|date:"F j, Y, g:i a" }}</p>
+        {% endlocaltime %}
+    {% else %}
+        <p class="rotation-message">No rotations have occurred yet.</p>
     {% endif %}
     {% for person in people %}
         <h2>{{ person.name }}</h2>
@@ -38,5 +47,5 @@
             <p>No chore group assigned.</p>
         {% endif %}
     {% endfor %}
+</div>
 {% endblock %}
-

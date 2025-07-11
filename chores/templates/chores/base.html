@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +9,7 @@
 <body>
     <nav class="navbar">
         <a href="{% url 'chore_assignments' %}" class="nav-button">Assignments</a>
+        <a href="{% url 'modify_chores' %}" class="nav-button">Modify Chores</a>
     </nav>
     <div class="container">
         {% block content %}{% endblock %}

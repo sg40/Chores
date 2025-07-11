@@ -1,0 +1,60 @@
+{% extends 'chores/base.html' %}
+
+{% block title %}Add Chore{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Add New Chore</h1>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="chore-detail-box">
+        <form method="post" class="chore-form">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="error">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+            <div class="form-field">
+                <label for="{{ form.name.id_for_label }}">Name:</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <div class="error">{{ form.name.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-field">
+                <label for="{{ form.description.id_for_label }}">Description:</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <div class="error">{{ form.description.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-field">
+                <label for="{{ form.days.id_for_label }}">Days:</label>
+                {{ form.days }}
+                {% if form.days.errors %}
+                    <div class="error">{{ form.days.errors }}</div>
+                {% endif %}
+            </div>
+            {% if group_id %}
+                <input type="hidden" name="chore_group" value="{{ group_id }}">
+            {% else %}
+                <div class="form-field">
+                    <label for="{{ form.chore_group.id_for_label }}">Chore Group:</label>
+                    {{ form.chore_group }}
+                    {% if form.chore_group.errors %}
+                        <div class="error">{{ form.chore_group.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <button type="submit" class="form-button">Add Chore</button>
+        </form>
+    </div>
+    <a href="{% url 'modify_chores' %}" class="back-button">← Back to Modify Chores</a>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'chores/base.html' %}
+
+{% block title %}Edit Chore{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Edit Chore</h1>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div class="chore-form">
+            <form method="post" class="form-field">
+                {% csrf_token %}
+                <div class="form-field">
+                    <label for="name">Chore Name</label>
+                    <input type="text" id="name" name="name" value="{{ chore.name }}" required>
+                </div>
+                <div class="form-field">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description">{{ chore.description|default_if_none:"" }}</textarea>
+                </div>
+                <div class="form-field">
+                    <label for="chore_group">Chore Group</label>
+                    <select id="chore_group" name="chore_group" required>
+                        {% for group in chore_groups %}
+                            <option value="{{ group.id }}" {% if chore.chore_group.id == group.id %}selected{% endif %}>{{ group.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="days">Days</label>
+                    <select id="days" name="days" multiple>
+                        {% for day in all_days %}
+                            <option value="{{ day.id }}" {% if day in chore.days.all %}selected{% endif %}>{{ day.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="form-button">Save</button>
+            </form>
+        </div>
+        <a href="{% url 'modify_chores' %}" class="back-button">← Back to Modify Chores</a>
+    </div>
+{% endblock %}
