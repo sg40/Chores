@@ -1,0 +1,535 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e3fffd;
+    color: #333;
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+h3 {
+    color: #438b76;
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.chore-detail-box h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    background-color: #e6f8f5;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #438b76;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, hsl(157, 100%, 83%), #d4fffb);
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #438b76;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    background: #bdfaed;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid #9acfbf;
+}
+
+.chore-detail-box h1,
+.chore-detail-box h2 {
+    background: none;
+    border: none;
+    padding: 0;
+    text-shadow: none;
+    margin: 0 0 0.5rem;
+    text-align: left;
+}
+
+a {
+    color: #459781;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+li:hover {
+    background-color: #b9fcf1;
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+li:hover .chore-form {
+    transform: none;
+}
+
+strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #d1fff4;
+    color: #459781;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+form button {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+form button:hover {
+    background-color: #005fa3;
+}
+
+.complete-btn {
+    background-color: #d4ffff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    margin-top: 10px;
+}
+
+.complete-btn:hover {
+    background: linear-gradient(to right, #f4f9fd, #b7f8fa);
+    color: #333;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    position: relative;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.custom-checkbox input[type="checkbox"]:focus + .checkmark {
+    outline: 2px solid #459781;
+    outline-offset: 2px;
+}
+
+.custom-checkbox .checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f8ff;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    font-size: 16px;
+    color: lightgray;
+    font-weight: bold;
+}
+
+.custom-checkbox .checkmark::after {
+    content: '✓';
+    position: absolute;
+    color: lightgray;
+    font-size: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: #aae2da;
+    border-color: #a0cac0;
+}
+
+.custom-checkbox input:checked ~ .checkmark::after {
+    color: rgb(206, 250, 237);
+}
+
+.chore-form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="checkbox"], button {
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.messages li {
+    background-color: #d1fff4;
+    color: #459781;
+    padding: 0.75rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.navbar {
+    background-color: #438b76;
+    overflow: hidden;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 0 2rem 2rem;
+}
+
+.nav-button {
+    display: inline-block;
+    background-color: #aae2da;
+    color: #333;
+    text-align:  center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 5px;
+    margin-left: 20px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-button:hover {
+    background-color: #d1fff4;
+    color: #333;
+    text-decoration: none;
+    transform: scale(1.1);
+}
+
+.chore-detail-box {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+}
+
+.chore-detail-box p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.chore-detail-label {
+    color: #438b76;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.tags {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.description-box {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 0.5rem 0;
+    border: 1px solid #e0e0e0;
+}
+
+.back-button {
+    display: inline-block;
+    background-color: #d1fff4;
+    color: #459781;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #aae2da;
+    color: #333;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+.chore-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.form-field label {
+    font-weight: 600;
+    color: #438b76;
+    margin-bottom: 0.5rem;
+}
+
+.form-field input[type="text"],
+.form-field textarea,
+.form-field select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-field input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.error {
+    color: #d9534f;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.form-button {
+    background-color: #459178;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    align-self: flex-start;
+}
+
+.form-button:hover {
+    background-color: #3a7a68;
+}
+
+/* Styles for Modify Chores page */
+/* Styles for Modify Chores page */
+/* [Previous styles unchanged, only .modify-chores-page section shown] */
+.rotation-message {
+    background-color: #d1fff4;
+    color: #459781;
+    padding: 0.75rem;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    margin: 1rem 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Styles for Modify Chores page */
+.modify-chores-page .chore-group-header {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #438b76;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, hsl(157, 100%, 83%), #d4fffb);
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    max-width: 870px; /* Match .chore-content width */
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding in width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modify-chores-page .chore-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    max-width: 870px; /* 900px - 2 * 15px padding */
+    margin: 0 auto;
+}
+
+.modify-chores-page .chore-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modify-chores-page .chore-list-item {
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 0; /* Padding handled by .chore-content */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modify-chores-page .chore-list-item:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transform: scale(1.02);
+}
+
+.modify-chores-page .chore-name {
+    font-weight: 500;
+    color: #333;
+    font-size: 1rem;
+}
+
+.modify-chores-page .button-group {
+    display: flex;
+    gap: 0.5rem; /* Space between buttons */
+    align-items: center; /* Vertical alignment */
+    justify-content: flex-end; /* Align to right */
+}
+
+.modify-chores-page .chore-form {
+    margin: 0; /* Remove margins */
+    padding: 0; /* Remove padding */
+    display: flex; /* Ensure form aligns with flex */
+    align-items: center; /* Match button-group alignment */
+}
+
+.modify-chores-page .delete-button,
+.modify-chores-page .edit-button {
+    background-color: #d1fff4;
+    color: #459781;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    width: 80px; /* Fixed width */
+    height: 36px; /* Fixed height */
+    display: flex; /* Center content */
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 0; /* Remove any margins */
+    padding: 0; /* Remove padding */
+    position: relative; /* Control positioning */
+    top: 0; /* Prevent offset */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modify-chores-page .delete-button:hover,
+.modify-chores-page .edit-button:hover {
+    background-color: #459781;
+    color: #d1fff4;
+    text-decoration: none;
+}
+
+.modify-chores-page .chore-link {
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    flex-grow: 1; /* Expand to fill available space */
+    padding: 0; /* Match chore-content padding */
+}
+
+.modify-chores-page .chore-link:hover {
+    text-decoration: none; /* Prevent underline on hover */
+}
+
+.modify-chores-page .chore-group-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Spread label and icon */
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+}
+
+.modify-chores-page .add-chore-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: #d1fff4;
+    color: #459781;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modify-chores-page .add-chore-icon:hover {
+    background-color: #459781;
+    color: #d1fff4;
+}
