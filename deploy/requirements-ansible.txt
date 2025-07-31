@@ -1,0 +1,6 @@
+# Ansible requirements for deploying ChoreChart Django application
+ansible>=6.0.0
+ansible-core>=2.13.0
+
+# Optional: For better performance and additional features
+psycopg2-binary>=2.9.0  # For PostgreSQL database management tasks

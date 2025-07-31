@@ -1,6 +1,4 @@
-Deploying a Django application to AWS EC2 using the free tier is a great way for your son to learn about cloud deployment. Below are detailed, step-by-step instructions tailored for a beginner to deploy a Django app on an EC2 instance, making it publicly accessible via the instance’s public IP. The instructions assume he has a functional Django project on his laptop and an AWS account with free tier access. We’ll use Ubuntu 22.04 LTS, Nginx as the web server, and Gunicorn as the WSGI server, which are common for Django deployments.
-
----
+# Manual Deployment Instructions
 
 ### **Prerequisites**
 1. **AWS Account**: Ensure your son has an AWS account with free tier eligibility. The t2.micro instance is free tier eligible for 750 hours/month for the first 12 months.
