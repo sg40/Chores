@@ -1,0 +1,29 @@
+[Unit]
+Description=Gunicorn instance to serve Django ChoreChart application
+Requires=network.target
+After=network.target
+
+[Service]
+Type=notify
+User={{ django_user }}
+Group=www-data
+RuntimeDirectory=gunicorn
+WorkingDirectory={{ project_path }}
+Environment="DJANGO_SETTINGS_MODULE={{ project_name }}.settings_prod"
+ExecStart={{ venv_path }}/bin/gunicorn \
+          --user {{ django_user }} \
+          --bind unix:{{ gunicorn_socket }} \
+          --workers 3 \
+          --timeout 60 \
+          --keep-alive 5 \
+          --max-requests 1000 \
+          --max-requests-jitter 100 \
+          --preload \
+          {{ project_name }}.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
