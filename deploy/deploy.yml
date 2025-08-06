@@ -105,7 +105,6 @@
 
     - name: Run Django migrations
       django_manage:
-        command: makemigrations chores
         command: migrate
         app_path: "{{ project_path }}"
         virtualenv: "{{ venv_path }}"
