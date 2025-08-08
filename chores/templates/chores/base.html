@@ -8,10 +8,24 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="{% url 'chore_assignments' %}" class="nav-button">Assignments</a>
-        <a href="{% url 'modify_chores' %}" class="nav-button">Modify Chores</a>
+        <div class="nav-left">
+            <a href="{% url 'chore_assignments' %}" class="nav-button">Assignments</a>
+            <a href="{% url 'modify_chores' %}" class="nav-button">Modify Chores</a>
+        </div>
+        <div class="nav-right">
+            {% if request.session.user_name %}
+                <a href="{% url 'logout' %}" class="nav-button logout-button">Logout</a>
+            {% endif %}
+        </div>
     </nav>
     <div class="container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         {% block content %}{% endblock %}
     </div>
 </body>

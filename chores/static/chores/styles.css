@@ -238,6 +238,32 @@ input[type="text"], input[type="checkbox"], button {
     padding: 10px 0;
     border-radius: 10px;
     margin: 0 2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info {
+    color: #d1fff4;
+    font-weight: 500;
+    padding: 0 10px;
+    font-size: 1rem;
+}
+
+.logout-button {
+    background-color: #ff6b6b !important;
+    color: white !important;
+}
+
+.logout-button:hover {
+    background-color: #ff5252 !important;
+    color: white !important;
 }
 
 .nav-button {

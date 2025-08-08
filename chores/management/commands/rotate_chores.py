@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-from chores.models import Person, Chore, ChoreGroup, RotationLog
+from chores.models import User, Chore, ChoreGroup, RotationLog
 import logging
 
 logger = logging.getLogger(__name__)
@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Ensure exactly two persons and two chore groups
-        persons = Person.objects.all()
+        persons = User.objects.all()
         chore_groups = ChoreGroup.objects.all()
 
         if persons.count() != 2 or chore_groups.count() != 2:
@@ -40,3 +40,5 @@ class Command(BaseCommand):
         logger.info(f"Chore groups rotated at {rotation_time}: {person1.name} to {person1.chore_group}, {person2.name} to {person2.chore_group}")
 
         self.stdout.write(self.style.SUCCESS(f"Successfully rotated chore groups at {rotation_time}"))
+
+# Usage: python3 manage.py rotate_chores

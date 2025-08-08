@@ -14,3 +14,5 @@ class Command(BaseCommand):
         clear_time = timezone.now()
         logger.info(f"Cleared {updated_count} chore(s) completed status at {clear_time}")
         self.stdout.write(self.style.SUCCESS(f"Successfully cleared {updated_count} chore(s) completed status at {clear_time}"))
+
+# Usage: python3 manage.py clear_completed_chores

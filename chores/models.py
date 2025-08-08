@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password, check_password
 
 
 class Days(models.Model):
@@ -26,9 +27,20 @@ class Chore(models.Model):
         return self.name
 
 
-class Person(models.Model):
+class User(models.Model):
     name = models.CharField(max_length=255)
-    chore_group = models.ForeignKey(ChoreGroup, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_people')
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255)
+    admin = models.BooleanField(default=False)
+    chore_group = models.ForeignKey(ChoreGroup, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_users')
+
+    def set_password(self, raw_password):
+        """Hash and set the password"""
+        self.password = make_password(raw_password)
+
+    def check_password(self, raw_password):
+        """Check if the provided password matches the stored password"""
+        return check_password(raw_password, self.password)
 
     def __str__(self):
         return self.name
@@ -39,5 +51,4 @@ class RotationLog(models.Model):
 
     def __str__(self):
         return f"Rotation at {self.rotation_time}"
-        return self.name
     

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ChoreGroup, Chore, Person, Days
+from .models import ChoreGroup, Chore, User, Days
 
 
 class ChoreAdmin(admin.ModelAdmin):
@@ -8,5 +8,5 @@ class ChoreAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Chore, ChoreAdmin)
 admin.site.register(ChoreGroup)
-admin.site.register(Person)
+admin.site.register(User)
 admin.site.register(Days)

@@ -12,7 +12,7 @@
     db_name: "chores_db"
     db_user: "chores_user"
     db_password: "4RtBNEeA"
-    gunicorn_socket: "/tmp/gunicorn.sock"
+    gunicorn_socket: "/var/run/chores/gunicorn.sock"
     
   tasks:
     - name: Update apt package cache
@@ -105,6 +105,16 @@
 
     - name: Run Django migrations
       django_manage:
+        command: makemigrations chores
+        app_path: "{{ project_path }}"
+        virtualenv: "{{ venv_path }}"
+        settings: "{{ project_name }}.settings_prod"
+      become_user: "{{ django_user }}"
+      environment:
+        DJANGO_SETTINGS_MODULE: "{{ project_name }}.settings_prod"
+
+    - name: Run Django migrations
+      django_manage:
         command: migrate
         app_path: "{{ project_path }}"
         virtualenv: "{{ venv_path }}"
@@ -122,6 +132,14 @@
       become_user: "{{ django_user }}"
       environment:
         DJANGO_SETTINGS_MODULE: "{{ project_name }}.settings_prod"
+
+    - name: Create Directory for Gunicorn socket
+      file:
+        path: /var/run/chores
+        state: directory
+        owner: "{{ django_user }}"
+        group: www-data
+        mode: '0755'
 
     - name: Create Gunicorn systemd service file
       template:

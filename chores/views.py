@@ -1,12 +1,13 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from .models import Person, Chore, ChoreGroup, Days
-from .forms import ChoreCompletionForm, ChoreForm
+from .models import User, Chore, ChoreGroup, Days
+from .forms import ChoreCompletionForm, ChoreForm, LoginForm
 
 def chore_assignments_view(request):
-    people = Person.objects.select_related('chore_group').prefetch_related('chore_group__chores__days')
+    people = User.objects.select_related('chore_group').prefetch_related('chore_group__chores__days')
     if request.method == 'POST':
         chore_id = request.POST.get('chore_id')
         if chore_id:
@@ -106,3 +107,24 @@ def edit_chore(request, chore_id):
             messages.error(request, 'Invalid day selected.')
             return render(request, 'chores/edit_chore.html', {'chore': chore, 'chore_groups': chore_groups, 'all_days': all_days})
     return render(request, 'chores/edit_chore.html', {'chore': chore, 'chore_groups': chore_groups, 'all_days': all_days})
+
+def login_view(request):
+    if request.session.get('user_id'):
+        return redirect('chore_assignments')
+    
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = form.cleaned_data['user']
+            request.session['user_id'] = user.id
+            request.session['user_name'] = user.name
+            request.session['is_admin'] = user.admin
+            return redirect('chore_assignments')
+    else:
+        form = LoginForm()
+    
+    return render(request, 'chores/login.html', {'form': form})
+
+def logout_view(request):
+    request.session.flush()
+    return redirect('login')
