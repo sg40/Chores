@@ -21,7 +21,6 @@ class Chore(models.Model):
     description = models.TextField(blank=True)
     days = models.ManyToManyField(Days)
     chore_group = models.ForeignKey(ChoreGroup, on_delete=models.CASCADE, related_name="chores")
-    completed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

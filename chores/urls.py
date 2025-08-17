@@ -10,4 +10,5 @@ urlpatterns = [
     path('chore/<int:pk>/', views.chore_detail_view, name='chore_detail'),
     path('modify-chores/', views.modify_chores, name='modify_chores'),
     path('modify-chores/<int:chore_id>/', views.edit_chore, name='edit_chore'),
+    path('rotate-chores/', views.rotate_chores_view, name='rotate_chores'),
 ]

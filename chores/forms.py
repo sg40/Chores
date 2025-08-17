@@ -1,10 +1,7 @@
 from django import forms
 from .models import Chore, Days, ChoreGroup, User
 
-class ChoreCompletionForm(forms.ModelForm):
-    class Meta:
-        model = Chore
-        fields = ['completed']
+
 
 class ChoreForm(forms.ModelForm):
     class Meta:

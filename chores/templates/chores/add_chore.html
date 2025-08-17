@@ -3,16 +3,7 @@
 {% block title %}Add Chore{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Add New Chore</h1>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <div class="chore-detail-box">
+    <div class="add-chore-container">
         <form method="post" class="chore-form">
             {% csrf_token %}
             {% if form.non_field_errors %}
@@ -55,6 +46,4 @@
             <button type="submit" class="form-button">Add Chore</button>
         </form>
     </div>
-    <a href="{% url 'modify_chores' %}" class="back-button">← Back to Modify Chores</a>
-</div>
 {% endblock %}

@@ -5,27 +5,22 @@
     <title>{% block title %}My Chore App{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'chores/styles.css' %}">
+
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-left">
-            <a href="{% url 'chore_assignments' %}" class="nav-button">Assignments</a>
-            <a href="{% url 'modify_chores' %}" class="nav-button">Modify Chores</a>
-        </div>
-        <div class="nav-right">
+    <div class="corner-nav">
+        <div class="corner-center">
+            <a href="{% url 'chore_assignments' %}" class="corner-button">Assignments</a>
+            {% if request.session.is_admin %}
+                <a href="{% url 'modify_chores' %}" class="corner-button">Modify Chores</a>
+                <a href="{% url 'rotate_chores' %}" class="corner-button">Rotate Chores</a>
+            {% endif %}
             {% if request.session.user_name %}
-                <a href="{% url 'logout' %}" class="nav-button logout-button">Logout</a>
+                <a href="{% url 'logout' %}" class="corner-button logout-button">Logout</a>
             {% endif %}
         </div>
-    </nav>
+    </div>
     <div class="container">
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
         {% block content %}{% endblock %}
     </div>
 </body>

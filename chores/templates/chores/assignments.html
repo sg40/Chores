@@ -3,49 +3,38 @@
 {% block title %}Assignments{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Assignments</h1>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <!-- Day Navigation -->
+    <div class="day-navigation">
+        <a href="?day={{ previous_day.id }}" class="nav-arrow">←</a>
+        <span class="current-day">{{ current_day.name }}</span>
+        <a href="?day={{ next_day.id }}" class="nav-arrow">→</a>
+    </div>
+    
     {% load tz %}
     {% if last_rotation_time %}
         {% localtime on %}
         <p class="rotation-message">Last rotated: {{ last_rotation_time|date:"F j, Y, g:i a" }}</p>
         {% endlocaltime %}
-    {% else %}
-        <p class="rotation-message">No rotations have occurred yet.</p>
     {% endif %}
+    
     {% for person in people %}
-        <h2>{{ person.name }}</h2>
-        {% if person.chore_group %}
-            <ul>
-                {% for chore in person.chore_group.chores.all %}
-                    <li onclick="window.location.href='{% url 'chore_detail' chore.pk %}'">
-                        <div class="chore-content">
-                            {{ chore.name }}<br>
-                            {% for day in chore.days.all %}
-                                <span class="tag">{{ day.name }}</span>
-                            {% endfor %}
-                            <form method="post" action="{% url 'chore_assignments' %}" class="chore-form" onclick="event.stopPropagation();">
-                                {% csrf_token %}
-                                <input type="hidden" name="chore_id" value="{{ chore.id }}">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="completed" onchange="this.form.submit()" {% if chore.completed %}checked aria-checked="true"{% else %}aria-checked="false"{% endif %} value="true">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </form>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No chore group assigned.</p>
-        {% endif %}
+        <div class="user-section">
+            <h2 class="user-title">{{ person.name }}</h2>
+            {% if person.chore_group %}
+                <div class="day-section">
+                    <ul class="chore-list">
+                        {% for chore in person.chore_group.chores.all %}
+                            {% if current_day in chore.days.all %}
+                                <li class="chore-item" onclick="window.location.href='{% url 'chore_detail' chore.pk %}'">
+                                    <span class="chore-name">{{ chore.name }}</span>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+                <p class="no-chores">No chore group assigned.</p>
+            {% endif %}
+        </div>
     {% endfor %}
-</div>
 {% endblock %}

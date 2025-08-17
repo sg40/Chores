@@ -3,25 +3,20 @@
 {% block title %}{{ chore.name }}{% endblock %}
 
 {% block content %}
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <div class="chore-detail-box">
-        <h3>{{ chore.name }}</h3>
-        <div class="description-box">
+    <div class="chore-detail-container">
+        <h3 class="chore-title">{{ chore.name }}</h3>
+        <div class="description-section">
             <p><strong class="chore-detail-label">Description:</strong> {{ chore.description|default:"No description provided" }}</p>
         </div>
-        <div class="tags">
-            {% for day in chore.days.all %}
-                <span class="tag">{{ day.name }}</span>
-            {% empty %}
-                <span>No days assigned</span>
-            {% endfor %}
+        <div class="tags-section">
+            <h4>Assigned Days:</h4>
+            <div class="tags">
+                {% for day in chore.days.all %}
+                    <span class="tag">{{ day.name }}</span>
+                {% empty %}
+                    <span class="no-days">No days assigned</span>
+                {% endfor %}
+            </div>
         </div>
     </div>
-    <a href="{% url 'chore_assignments' %}" class="back-button">← Back to Assignments</a>
 {% endblock %}

@@ -1,9 +1,9 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #e3fffd;
-    color: #333;
+    background: linear-gradient(135deg, #e3fffd 0%, #aae2da 35%, #438b76 100%);
+    min-height: 100vh;
     margin: 0;
-    padding: 2rem;
+    padding: 0;
     line-height: 1.6;
 }
 
@@ -14,24 +14,17 @@ h3 {
     font-size: 1.5rem;
 }
 
-.chore-detail-box h3 {
-    font-size: 1.8rem;
-    color: #2c3e50;
-    background-color: #e6f8f5;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-}
+
 
 h2 {
     font-size: 1.75rem;
     font-weight: 600;
-    color: #438b76;
+    color: white;
     padding: 10px 15px;
     border-radius: 8px;
     margin-top: 20px;
-    margin-bottom: 15px;
-    background: linear-gradient(to right, hsl(157, 100%, 83%), #d4fffb);
+    margin-bottom: 1rem;
+    background: #5fb3a4;
     text-align: center;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
@@ -43,7 +36,7 @@ h1 {
     padding: 10px 15px;
     border-radius: 8px;
     margin-top: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
     background: #bdfaed;
     text-align: center;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -53,15 +46,7 @@ h1 {
     border: 4px solid #9acfbf;
 }
 
-.chore-detail-box h1,
-.chore-detail-box h2 {
-    background: none;
-    border: none;
-    padding: 0;
-    text-shadow: none;
-    margin: 0 0 0.5rem;
-    text-align: left;
-}
+
 
 a {
     color: #459781;
@@ -107,19 +92,14 @@ strong {
 
 .container {
     max-width: 900px;
-    margin: auto;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 80px;
+    padding: 2rem 2rem 4rem 2rem;
+    text-align: center;
 }
 
-.tag {
-    display: inline-block;
-    background-color: #d1fff4;
-    color: #459781;
-    padding: 4px 10px;
-    margin: 2px;
-    font-size: 0.85rem;
-    border-radius: 12px;
-    font-weight: 500;
-}
+
 
 form button {
     background-color: #0077cc;
@@ -152,101 +132,69 @@ form button:hover {
     color: #333;
 }
 
-.custom-checkbox {
-    display: inline-block;
-    position: relative;
-    height: 24px;
-    width: 24px;
-    cursor: pointer;
-}
 
-.custom-checkbox input[type="checkbox"] {
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
-}
 
-.custom-checkbox input[type="checkbox"]:focus + .checkmark {
-    outline: 2px solid #459781;
-    outline-offset: 2px;
-}
 
-.custom-checkbox .checkmark {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: #f0f8ff;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-    font-size: 16px;
-    color: lightgray;
-    font-weight: bold;
-}
 
-.custom-checkbox .checkmark::after {
-    content: '✓';
-    position: absolute;
-    color: lightgray;
-    font-size: 16px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
-.custom-checkbox input:checked ~ .checkmark {
-    background-color: #aae2da;
-    border-color: #a0cac0;
-}
 
-.custom-checkbox input:checked ~ .checkmark::after {
-    color: rgb(206, 250, 237);
-}
-
-.chore-form {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-top: 10px;
-}
-
-input[type="text"], input[type="checkbox"], button {
+input[type="text"], button {
     font-family: inherit;
     font-size: 1rem;
     line-height: 1.5;
 }
 
-.messages {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
+
+
+.corner-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    pointer-events: none;
 }
 
-.messages li {
-    background-color: #d1fff4;
-    color: #459781;
-    padding: 0.75rem;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.navbar {
-    background-color: #438b76;
-    overflow: hidden;
-    padding: 10px 0;
-    border-radius: 10px;
-    margin: 0 2rem 2rem;
+.corner-center {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-left, .nav-right {
-    display: flex;
-    align-items: center;
     gap: 10px;
+    pointer-events: auto;
+    border: 2px solid #5fb3a4;
+    border-radius: 12px;
+    padding: 10px;
+    background: white;
+    justify-content: center;
+    max-width: 900px;
+    margin-bottom: 1rem;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.corner-button {
+    display: inline-block;
+    background-color: white;
+    color: #438b76;
+    text-align: center;
+    padding: 8px 12px;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 2px solid #5fb3a4;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+}
+
+.corner-button:hover {
+    background-color: white;
+    color: #438b76;
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(95, 179, 164, 0.3);
 }
 
 .user-info {
@@ -256,15 +204,7 @@ input[type="text"], input[type="checkbox"], button {
     font-size: 1rem;
 }
 
-.logout-button {
-    background-color: #ff6b6b !important;
-    color: white !important;
-}
 
-.logout-button:hover {
-    background-color: #ff5252 !important;
-    color: white !important;
-}
 
 .nav-button {
     display: inline-block;
@@ -286,40 +226,7 @@ input[type="text"], input[type="checkbox"], button {
     transform: scale(1.1);
 }
 
-.chore-detail-box {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 1.5rem;
-}
 
-.chore-detail-box p {
-    margin: 0.5rem 0;
-    font-size: 1rem;
-    color: #333;
-}
-
-.chore-detail-label {
-    color: #438b76;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.tags {
-    margin-top: 0.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.description-box {
-    background-color: #f9f9f9;
-    padding: 1rem;
-    border-radius: 5px;
-    margin: 0.5rem 0;
-    border: 1px solid #e0e0e0;
-}
 
 .back-button {
     display: inline-block;
@@ -342,8 +249,11 @@ input[type="text"], input[type="checkbox"], button {
 
 .chore-form {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .form-field {
@@ -355,22 +265,57 @@ input[type="text"], input[type="checkbox"], button {
 .form-field label {
     font-weight: 600;
     color: #438b76;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .form-field input[type="text"],
 .form-field textarea,
 .form-field select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 0.75rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.form-field input[type="text"]:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+    outline: none;
+    border-color: #5fb3a4;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(95, 179, 164, 0.1);
 }
 
 .form-field input[type="checkbox"] {
     margin-right: 0.5rem;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.75rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    color: #333;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 0.5rem;
+    margin-bottom: 0;
 }
 
 .error {
@@ -380,7 +325,7 @@ input[type="text"], input[type="checkbox"], button {
 }
 
 .form-button {
-    background-color: #459178;
+    background-color: #5fb3a4;
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -392,10 +337,59 @@ input[type="text"], input[type="checkbox"], button {
 }
 
 .form-button:hover {
-    background-color: #3a7a68;
+    background-color: #438b76;
 }
 
-/* Styles for Modify Chores page */
+/* Specific styling for edit page forms */
+.container > .chore-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: static;
+    bottom: auto;
+    right: auto;
+}
+
+
+
+/* Styles for Add Chore page */
+.add-chore-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 25px 45px rgba(67, 139, 118, 0.2);
+    position: relative;
+    margin: 2rem auto;
+}
+
+.add-chore-container .chore-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    position: static;
+    bottom: auto;
+    right: auto;
+}
+
+.add-chore-container .form-button {
+    align-self: center;
+}
+
 /* Styles for Modify Chores page */
 /* [Previous styles unchanged, only .modify-chores-page section shown] */
 .rotation-message {
@@ -411,22 +405,35 @@ input[type="text"], input[type="checkbox"], button {
     margin-right: auto;
 }
 /* Styles for Modify Chores page */
+.modify-chores-page .chore-group-container {
+    margin-bottom: 1rem;
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px 30px 30px 30px;
+    border: 2px solid #5fb3a4;
+}
+
+.modify-chores-page .chore-group-container:last-child {
+    margin-bottom: 0;
+}
+
 .modify-chores-page .chore-group-header {
     font-size: 1.75rem;
-    font-weight: 600;
+    font-weight: 400;
     color: #438b76;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    background: linear-gradient(to right, hsl(157, 100%, 83%), #d4fffb);
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    background: none;
     text-align: center;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    max-width: 870px; /* Match .chore-content width */
-    width: 100%; /* Ensure full width */
-    box-sizing: border-box; /* Include padding in width */
+    text-shadow: none;
+    max-width: 900px;
+    width: 100%;
+    box-sizing: border-box;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    border: none;
 }
 
 .modify-chores-page .chore-content {
@@ -436,6 +443,7 @@ input[type="text"], input[type="checkbox"], button {
     padding: 1rem;
     max-width: 870px; /* 900px - 2 * 15px padding */
     margin: 0 auto;
+    gap: 15px; /* Ensure space between chore name and buttons */
 }
 
 .modify-chores-page .chore-list {
@@ -448,21 +456,22 @@ input[type="text"], input[type="checkbox"], button {
 }
 
 .modify-chores-page .chore-list-item {
-    background-color: white;
+    background-color: #d1fff4;
     margin-bottom: 15px;
     padding: 0; /* Padding handled by .chore-content */
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: none;
     transition: all 0.2s ease;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    border: 2px solid #5fb3a4;
 }
 
 .modify-chores-page .chore-list-item:hover {
-    background-color: #f8f9fa;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    transform: scale(1.02);
+    background-color: #aae2da;
+    box-shadow: none;
+    transform: translateY(-3px);
 }
 
 .modify-chores-page .chore-name {
@@ -473,9 +482,10 @@ input[type="text"], input[type="checkbox"], button {
 
 .modify-chores-page .button-group {
     display: flex;
-    gap: 0.5rem; /* Space between buttons */
+    gap: 10px; /* Increased space between buttons */
     align-items: center; /* Vertical alignment */
     justify-content: flex-end; /* Align to right */
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .modify-chores-page .chore-form {
@@ -483,13 +493,16 @@ input[type="text"], input[type="checkbox"], button {
     padding: 0; /* Remove padding */
     display: flex; /* Ensure form aligns with flex */
     align-items: center; /* Match button-group alignment */
+    position: static; /* Override the absolute positioning from assignments page */
+    bottom: auto;
+    right: auto;
 }
 
 .modify-chores-page .delete-button,
 .modify-chores-page .edit-button {
-    background-color: #d1fff4;
-    color: #459781;
-    border: none;
+    background-color: white;
+    color: #438b76;
+    border: 2px solid #5fb3a4;
     border-radius: 5px;
     cursor: pointer;
     font-weight: 500;
@@ -511,8 +524,8 @@ input[type="text"], input[type="checkbox"], button {
 
 .modify-chores-page .delete-button:hover,
 .modify-chores-page .edit-button:hover {
-    background-color: #459781;
-    color: #d1fff4;
+    background-color: #5fb3a4;
+    color: white;
     text-decoration: none;
 }
 
@@ -530,32 +543,307 @@ input[type="text"], input[type="checkbox"], button {
 }
 
 .modify-chores-page .chore-group-header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Spread label and icon */
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+
+
 .modify-chores-page .add-chore-icon {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 28px;
     height: 28px;
-    background-color: #d1fff4;
-    color: #459781;
-    border-radius: 50%;
+    background-color: white;
+    color: #438b76;
+    border-radius: 6px;
     font-size: 1.2rem;
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-shadow: none;
+    border: 2px solid #5fb3a4;
 }
 
 .modify-chores-page .add-chore-icon:hover {
-    background-color: #459781;
-    color: #d1fff4;
+    background-color: #5fb3a4;
+    color: white;
 }
+
+/* Chore Detail Page - Modern Style */
+.chore-detail-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 25px 45px rgba(67, 139, 118, 0.2);
+    position: relative;
+    margin: 0 auto;
+    margin-top: 0;
+}
+
+.chore-title {
+    font-size: 2rem;
+    color: #438b76;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 400;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.description-section {
+    background: rgba(248, 249, 250, 0.8);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(225, 225, 225, 0.5);
+}
+
+.description-section p {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.chore-detail-label {
+    color: #438b76;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.tags-section {
+    margin-top: 1rem;
+}
+
+.tags-section h4 {
+    color: #438b76;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #d1fff4;
+    color: #459781;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background-color: #aae2da;
+    transform: translateY(-1px);
+}
+
+.no-days {
+    color: #666;
+    font-style: italic;
+    padding: 0.5rem 1rem;
+    background: rgba(248, 249, 250, 0.8);
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+}
+
+/* Top-Down Chore Layout */
+.user-section {
+    margin-bottom: 1rem;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px 30px 30px 30px;
+    border: 2px solid #5fb3a4;
+}
+
+.user-section:last-child {
+    margin-bottom: 0;
+}
+
+.user-title {
+    color: #438b76;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    text-align: center;
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.chore-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chore-item {
+    background-color: #d1fff4;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #5fb3a4;
+    box-shadow: none !important;
+}
+
+.chore-item:hover {
+    transform: translateY(-3px);
+}
+
+.day-section {
+    margin-bottom: 1rem;
+}
+
+.day-section:last-child {
+    margin-bottom: 0;
+}
+
+.day-title {
+    color: #438b76;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    background: white;
+    padding: 10px 30px;
+    border-radius: 8px;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    text-align: center;
+    border: 2px solid #5fb3a4;
+}
+
+.chore-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #438b76;
+    text-align: center;
+    display: block;
+}
+
+.no-chores {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+}
+
+.rotation-message {
+    text-align: center;
+    color: #438b76;
+    font-style: italic;
+    margin-bottom: 1rem;
+    border: 2px solid #5fb3a4;
+    border-radius: 8px;
+    padding: 10px;
+    background: white;
+}
+
+.day-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: -5px;
+    margin-top: -10px;
+    border: 2px solid #5fb3a4;
+    border-radius: 12px;
+    padding: 10px;
+    background: white;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #d1fff4;
+    color: #438b76;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 2px solid #5fb3a4;
+    font-size: 1.2rem;
+    font-weight: 900;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(95, 179, 164, 0.3);
+}
+
+.nav-arrow:hover {
+    background: #aae2da;
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(95, 179, 164, 0.4);
+    text-decoration: none;
+}
+
+.current-day {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #438b76;
+    padding: 10px 20px;
+    background: white;
+    border-radius: 8px;
+}
+
+.debug-info {
+    text-align: center;
+    color: #666;
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    font-family: monospace;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .user-title {
+        font-size: 1.5rem;
+    }
+    
+    .day-title {
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+    
+    .chore-item {
+        padding: 15px;
+    }
+    
+    .chore-name {
+        font-size: 1rem;
+    }
+}
+

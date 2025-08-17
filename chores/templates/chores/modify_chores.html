@@ -3,56 +3,57 @@
 {% block title %}Modify Chores{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Modify Chores</h1>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
     <div class="modify-chores-page">
         {% for group in chore_groups %}
-            <div class="chore-group-header-container">
-                <h2 class="chore-group-header">{{ group.name }}</h2>
-                <a href="{% url 'add_chore' %}?group_id={{ group.id }}" class="add-chore-icon" title="Add Chore">+</a>
-            </div>
-            {% if group.chores.exists %}
-                <ul class="chore-list">
-                    {% for chore in group.chores.all %}
-                        <li class="chore-list-item">
-                            <div class="chore-content">
-                                <a href="{% url 'chore_detail' chore.id %}" class="chore-link">
-                                    <span class="chore-name">{{ chore.name }}</span>
-                                </a>
-                                <div class="button-group">
-                                    <form method="post" action="{% url 'modify_chores' %}" class="chore-form" onsubmit="return confirm('Are you sure you want to delete {{ chore.name }}?');">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="chore_id" value="{{ chore.id }}">
-                                        <button type="submit" class="delete-button">Delete</button>
-                                    </form>
-                                    <button type="button" class="edit-button" onclick="window.location.href='{% url 'edit_chore' chore.id %}'">Edit</button>
+            <div class="chore-group-container">
+                <h2 class="chore-group-header">
+                    {{ group.name }}
+                    <a href="{% url 'add_chore' %}?group_id={{ group.id }}" class="add-chore-icon" title="Add Chore">+</a>
+                </h2>
+                {% if group.chores.exists %}
+                    <ul class="chore-list">
+                        {% for chore in group.chores.all %}
+                            <li class="chore-list-item">
+                                <div class="chore-content">
+                                    <a href="{% url 'chore_detail' chore.id %}" class="chore-link">
+                                        <span class="chore-name">{{ chore.name }}</span>
+                                    </a>
+                                    <div class="button-group">
+                                        <form method="post" action="{% url 'modify_chores' %}" class="chore-form" onsubmit="return confirm('Are you sure you want to delete {{ chore.name }}?');">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="chore_id" value="{{ chore.id }}">
+                                            <button type="submit" class="delete-button">Delete</button>
+                                        </form>
+                                        <button type="button" class="edit-button" data-edit-url="{% url 'edit_chore' chore.id %}">Edit</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No chores in this group.</p>
-            {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No chores in this group.</p>
+                {% endif %}
+            </div>
         {% endfor %}
         {% if not chore_groups.exists %}
             <p>No chore groups available.</p>
         {% endif %}
     </div>
-    <a href="{% url 'chore_assignments' %}" class="back-button">← Back to Assignments</a>
-</div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.modify-chores-page .button-group').forEach(function(buttonGroup) {
             buttonGroup.addEventListener('click', function(event) {
                 event.stopPropagation();
+            });
+        });
+        
+        // Handle edit button clicks
+        document.querySelectorAll('.edit-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const editUrl = this.getAttribute('data-edit-url');
+                if (editUrl) {
+                    window.location.href = editUrl;
+                }
             });
         });
     });

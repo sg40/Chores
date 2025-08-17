@@ -31,8 +31,7 @@ class Command(BaseCommand):
         person1.save()
         person2.save()
 
-        # Reset chore completion status
-        Chore.objects.update(completed=False)
+
 
         # Log rotation
         rotation_time = timezone.now()
